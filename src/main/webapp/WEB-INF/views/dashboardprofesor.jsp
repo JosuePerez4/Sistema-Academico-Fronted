@@ -87,7 +87,7 @@
                         <section class="workload-section">
                             <h3>Intensidad Horaria</h3>
                             <div class="workload-info">
-                                <span class="workload-hours">${claseActual.horasSemanales} horas semanales</span>
+                                <span class="workload-hours">${claseActual.horasSemanales}</span>
                             </div>
                         </section>
                     </div>
