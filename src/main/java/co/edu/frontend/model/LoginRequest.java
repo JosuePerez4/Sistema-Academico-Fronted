@@ -1,11 +1,23 @@
 package co.edu.frontend.model;
 
 public class LoginRequest {
-    private String usuario;
-    private String clave;
+    private String correo;
+    private String contrasena;
 
-    public String getUsuario() { return usuario; }
-    public void setUsuario(String usuario) { this.usuario = usuario; }
-    public String getClave() { return clave; }
-    public void setClave(String clave) { this.clave = clave; }
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
 }
