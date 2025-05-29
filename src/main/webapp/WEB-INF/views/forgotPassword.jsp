@@ -18,6 +18,7 @@
                     </div>
                     <form method="post" action="/forgot-password">
                         <div class="correo-electr-nico">Correo electrónico</div>
+
                         <div class="input-container">
                             <img class="mail-icon-3" src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
                                 alt="mail icon">
