@@ -89,6 +89,10 @@ public class LoginController {
         model.addAttribute("nombre", user.getNombre());
         model.addAttribute("correo", user.getCorreo());
         model.addAttribute("rol", user.getRol());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        if (user.getRol() != null && user.getRol().equalsIgnoreCase("estudiante")) {
+            return "dashboardestudiante";
+        }
         return "dashboard";
     }
 
@@ -134,5 +138,17 @@ public class LoginController {
             model.addAttribute("error", "Error al contactar el servicio. Intenta más tarde.");
             return "forgotPassword";
         }
+    }
+
+    @GetMapping("/contacto")
+    public String contacto(HttpSession session, Model model) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null)
+            return "redirect:/login";
+        model.addAttribute("nombre", user.getNombre());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        // Si tienes notificaciones, pásalas aquí. Ejemplo:
+        model.addAttribute("notificacionesPendientes", 4); // O el valor real si lo tienes
+        return "contacto";
     }
 }
