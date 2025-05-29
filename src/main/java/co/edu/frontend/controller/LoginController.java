@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class LoginController {
-    private final String AUTH_URL = "http://localhost:8081/api/auth/login";
+    private final String AUTH_URL = "http://localhost:8081/usuarios/login";
 
     @GetMapping("/")
     public String home(Model model) {
@@ -26,56 +26,67 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String procesarLogin(
-            @RequestParam String usuario,
-            @RequestParam String clave,
+    public String procesarLogin(@RequestParam String correo,
+            @RequestParam String contrasena,
             HttpSession session,
             Model model) {
 
-        if ("admin".equals(usuario) && "1234".equals(clave)) {
-            LoginResponse fakeUser = new LoginResponse();
-            fakeUser.setNombre("Administrador Local");
-            fakeUser.setRol("ADMIN");
-            session.setAttribute("usuario", fakeUser);
-            return "redirect:/dashboard";
-        }
-
-        RestTemplate restTemplate = new RestTemplate();
+        // Preparamos el objeto LoginRequest para enviar al microservicio
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsuario(usuario);
-        loginRequest.setClave(clave);
+        loginRequest.setCorreo(correo);
+        loginRequest.setContrasena(contrasena);
 
+        // Creamos RestTemplate para la llamada HTTP
+        RestTemplate restTemplate = new RestTemplate();
+
+        // Preparamos los headers (Content-Type: application/json)
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Empaquetamos la petición
         HttpEntity<LoginRequest> requestEntity = new HttpEntity<>(loginRequest, headers);
 
         try {
+            // Enviamos POST al microservicio
             ResponseEntity<LoginResponse> response = restTemplate.exchange(
                     AUTH_URL,
                     HttpMethod.POST,
                     requestEntity,
-                    LoginResponse.class
-            );
+                    LoginResponse.class);
 
+            // Si el microservicio responde OK (200)
             if (response.getStatusCode() == HttpStatus.OK) {
-                session.setAttribute("usuario", response.getBody());
-                return "redirect:/dashboard";
-            }
-        } catch (HttpClientErrorException.Unauthorized e) {
-            model.addAttribute("error", "Usuario o clave incorrectos");
-        } catch (Exception e) {
-            model.addAttribute("error", "Error al contactar el microservicio");
-        }
+                LoginResponse usuario = response.getBody();
 
-        return "login";
+                session.setAttribute("usuario", usuario);
+
+                return "redirect:/dashboard";
+            } else {
+
+                model.addAttribute("error", "Error al iniciar sesión. Intenta nuevamente.");
+                return "login";
+            }
+
+        } catch (HttpClientErrorException.Unauthorized e) {
+
+            model.addAttribute("error", "Correo o contraseña incorrectos.");
+            return "login";
+
+        } catch (Exception e) {
+
+            model.addAttribute("error", "Error al contactar el servicio. Intenta más tarde.");
+            return "login";
+        }
     }
 
     @GetMapping("/dashboard")
     public String dashboard(HttpSession session, Model model) {
         LoginResponse user = (LoginResponse) session.getAttribute("usuario");
-        if (user == null) return "redirect:/";
+        if (user == null)
+            return "redirect:/login";
 
-        model.addAttribute("usuario", user.getNombre());
+        model.addAttribute("nombre", user.getNombre());
+        model.addAttribute("correo", user.getCorreo());
         model.addAttribute("rol", user.getRol());
         return "dashboard";
     }
@@ -83,6 +94,11 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/login";
+    }
+
+    @GetMapping("/forgot-password")
+    public String mostrarFormularioRecuperarContrasena() {
+        return "forgotPassword";
     }
 }
