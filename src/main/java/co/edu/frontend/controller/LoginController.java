@@ -1,5 +1,6 @@
 package co.edu.frontend.controller;
 
+import co.edu.frontend.model.ForgotPasswordRequest;
 import co.edu.frontend.model.LoginRequest;
 import co.edu.frontend.model.LoginResponse;
 import jakarta.servlet.http.HttpSession;
@@ -100,5 +101,38 @@ public class LoginController {
     @GetMapping("/forgot-password")
     public String mostrarFormularioRecuperarContrasena() {
         return "forgotPassword";
+    }
+
+    @PostMapping("/forgot-password")
+    public String procesarRecuperarContrasena(@RequestParam String correo, Model model) {
+
+        ForgotPasswordRequest forgotPasswordRequest = new ForgotPasswordRequest();
+        forgotPasswordRequest.setCorreo(correo);
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<ForgotPasswordRequest> requestEntity = new HttpEntity<>(forgotPasswordRequest, headers);
+        String forgotPasswordUrl = "http://localhost:8081/api/auth/forgot-password";
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(
+                    forgotPasswordUrl,
+                    HttpMethod.POST,
+                    requestEntity,
+                    String.class);
+
+            if (response.getStatusCode() == HttpStatus.OK) {
+                model.addAttribute("message", "Instrucciones de recuperación enviadas a " + correo);
+                return "forgotPassword";
+            } else {
+                model.addAttribute("error", "Error al enviar las instrucciones de recuperación. Intenta nuevamente.");
+                return "forgotPassword";
+            }
+        } catch (HttpClientErrorException e) {
+            model.addAttribute("error", "Correo no registrado o error al contactar el servicio.");
+            return "forgotPassword";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al contactar el servicio. Intenta más tarde.");
+            return "forgotPassword";
+        }
     }
 }
