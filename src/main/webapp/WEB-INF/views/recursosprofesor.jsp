@@ -17,7 +17,7 @@
         const usuarioId = <c:out value='${usuarioId}'/>;
         document.addEventListener('DOMContentLoaded', function() {
             // Cargar recursos disponibles
-            fetch('/api/recursos')
+            fetch('http://localhost:8081/api/recursos')
                 .then(res => res.json())
                 .then(data => {
                     recursosDisponibles = data;
@@ -42,7 +42,7 @@
                     alert('Por favor complete todos los campos.');
                     return;
                 }
-                fetch('/api/recursos/movimientos', {
+                fetch('http://localhost:8081/api/recursos/movimientos', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
