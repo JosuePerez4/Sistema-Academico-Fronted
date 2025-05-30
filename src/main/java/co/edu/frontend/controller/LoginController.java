@@ -86,10 +86,20 @@ public class LoginController {
         if (user == null)
             return "redirect:/login";
 
-        model.addAttribute("nombre", user.getNombre());
-        model.addAttribute("correo", user.getCorreo());
-        model.addAttribute("rol", user.getRol());
-        return "dashboard";
+        // Redirigir según el rol del usuario
+        switch (user.getRol().toLowerCase()) {
+            case "admin":
+                return "redirect:/admin/dashboard";
+            case "profesor":
+                return "redirect:/profesor/dashboard";
+            case "estudiante":
+                model.addAttribute("nombre", user.getNombre());
+                model.addAttribute("correo", user.getCorreo());
+                model.addAttribute("rol", user.getRol());
+                return "dashboard";
+            default:
+                return "redirect:/login";
+        }
     }
 
     @GetMapping("/logout")

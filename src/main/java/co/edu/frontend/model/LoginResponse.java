@@ -5,6 +5,11 @@ public class LoginResponse {
     private String correo;
     private String rol;
 
+    // Constructor
+    public LoginResponse() {
+    }
+
+    // Getters y Setters
     public String getCorreo() {
         return correo;
     }
@@ -28,5 +33,4 @@ public class LoginResponse {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 }
