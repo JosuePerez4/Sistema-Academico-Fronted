@@ -20,13 +20,15 @@
         </div>
         <nav>
             <ul>
-                <li class="active"><span>Inicio</span></li>
+                <li class="active"><a href="/estudiantes/dashboard" style="text-decoration: none; color: inherit;"><span>Inicio</span></a></li>
+                <li><a href="/estudiantes/matricula" style="text-decoration: none; color: inherit;"><span>Matrícula</span></a></li>
                 <li><span>Inclusiones</span></li>
-                <li><span>Materias</span></li>
+                <li><a href="/estudiantes/materias" style="text-decoration: none; color: inherit;"><span>Materias</span></a></li>
+                <li><a href="/estudiantes/asistencias" style="text-decoration: none; color: inherit;"><span>Asistencias</span></a></li>
                 <li><span>Mensajes <span class="badge">2</span></span></li>
                 <li><span>Horario</span></li>
                 <li><span>Evaluaciones</span></li>
-                <li><span>Cursos disponibles</span></li>
+                <li><a href="/estudiantes/cursos-disponibles" style="text-decoration: none; color: inherit;"><span>Cursos disponibles</span></a></li>
                 <li><span>Ajustes</span></li>
             </ul>
         </nav>
