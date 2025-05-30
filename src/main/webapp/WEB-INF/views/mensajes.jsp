@@ -23,15 +23,25 @@
                     </div>
                     <nav>
                         <ul>
-                            <li><a href="/profesor/dashboard"><span>Inicio</span></a></li>
-                            <li><a href="/profesor/mis-clases"><span>Mis Clases</span></a></li>
-                            <li><a href="/profesor/calificaciones"><span>Calificaciones</span></a></li>
-                            <li class="active"><a href="/mensajes"><span>Mensajes <span
-                                            class="badge">${notificacionesPendientes}</span></span></a></li>
-                            <li><a href="/profesor/horario"><span>Horario</span></a></li>
-                            <li><a href="/profesor/asistencias"><span>Asistencias</span></a></li>
-                            <li><a href="/profesor/reportes"><span>Reportes</span></a></li>
-                            <li><a href="/profesor/ajustes"><span>Ajustes</span></a></li>
+                            <li><a href="/profesor/dashboard"
+                                    class="${currentPage == 'dashboard' ? 'active' : ''}">Inicio</a></li>
+                            <li><a href="/profesor/clases" class="${currentPage == 'clases' ? 'active' : ''}">Mis
+                                    Clases</a></li>
+                            <li><a href="/profesor/calificaciones"
+                                    class="${currentPage == 'calificaciones' ? 'active' : ''}">Calificaciones</a></li>
+                            <li><a href="/mensajes"
+                                    class="${currentPage == 'mensajes' ? 'active' : ''}">Mensajes <span
+                                        class="badge">3</span></a></li>
+                            <li><a href="/profesor/horario"
+                                    class="${currentPage == 'horario' ? 'active' : ''}">Horario</a></li>
+                            <li><a href="/profesor/asistencias"
+                                    class="${currentPage == 'asistencias' ? 'active' : ''}">Asistencias</a></li>
+                            <li><a href="/profesor/evaluaciones"
+                                    class="${currentPage == 'evaluaciones' ? 'active' : ''}">Evaluaciones</a></li>
+                            <li><a href="/profesor/ajustes"
+                                    class="${currentPage == 'ajustes' ? 'active' : ''}">Ajustes</a></li>
+                            <li><a href="/profesor/recursos"
+                                    class="${currentPage == 'recursos' ? 'active' : ''}">Recursos Académicos</a></li>
                         </ul>
                     </nav>
                     <div class="sidebar-footer">

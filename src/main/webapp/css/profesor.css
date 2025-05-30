@@ -1,494 +1,547 @@
 /* Estilos Base con Colores Verde Azulados */
 :root {
-    --primary-color: #21465b; /* Un tono oscuro de azul verdoso para la barra lateral y títulos */
-    --secondary-color: #54a7b9; /* Un tono medio de azul verdoso para elementos activos/destacados y enlaces */
-    --accent-color: #d9534f; /* Un rojo para alertas/insignias (se mantiene similar) */
-    --light-gray: #e7e9ed; /* Un gris claro para fondos de input/separadores */
-    --dark-gray: #6c757d; /* Un gris oscuro para texto secundario */
-    --text-color: #343a40; /* Un negro suave para el texto principal */
-    --white: #fff;
-    --body-bg: #f8f9fa; /* Un fondo muy claro para el cuerpo */
-    --header-height: 80px; /* Altura fija del encabezado */
-    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra ligera para tarjetas */
-    --shadow-medium: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra media para sidebar */
-    --font-family: 'Inter', sans-serif;
+  --primary-color: #21465b;
+  /* Un tono oscuro de azul verdoso para la barra lateral y títulos */
+  --secondary-color: #54a7b9;
+  /* Un tono medio de azul verdoso para elementos activos/destacados y enlaces */
+  --accent-color: #d9534f;
+  /* Un rojo para alertas/insignias (se mantiene similar) */
+  --light-gray: #e7e9ed;
+  /* Un gris claro para fondos de input/separadores */
+  --dark-gray: #6c757d;
+  /* Un gris oscuro para texto secundario */
+  --text-color: #343a40;
+  /* Un negro suave para el texto principal */
+  --white: #fff;
+  --body-bg: #f8f9fa;
+  /* Un fondo muy claro para el cuerpo */
+  --header-height: 80px;
+  /* Altura fija del encabezado */
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+  /* Sombra ligera para tarjetas */
+  --shadow-medium: 0 4px 15px rgba(0, 0, 0, 0.1);
+  /* Sombra media para sidebar */
+  --font-family: "Inter", sans-serif;
+
+  /* Nuevos colores para la TABLA CLARA (AJUSTADOS) */
+  --table-bg-light: #ffffff;
+  /* Fondo general de la tabla clara */
+  --table-header-bg-light: #f0f2f4;
+  /* Fondo de encabezados de tabla (gris claro) */
+  --table-border-light: #e0e0e0;
+  /* Borde claro para celdas */
+  --table-text-dark: var(--text-color);
+  /* Color de texto oscuro para la tabla clara */
+  --table-green-active: #4caf50;
+  /* Verde para el "Evaluación y Calificaciones" (se mantiene) */
+  --table-link-underline-dark: var(--primary-color);
+  /* Color para enlaces/texto importante en tabla clara */
+  --table-input-bg-light: #fdfdfd;
+  /* Fondo de inputs en tabla clara */
+  --table-input-border-light: #ccc;
+  /* Borde de inputs en tabla clara */
+  --table-row-hover: #f9f9f9;
+  /* Fondo de fila al pasar el mouse */
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-family);
-    color: var(--text-color);
-    background-color: var(--body-bg);
-    display: flex;
-    min-height: 100vh;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--body-bg);
+  display: flex;
+  min-height: 100vh;
 }
 
 .container {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 /* Sidebar */
 .sidebar {
-    width: 250px;
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow-medium);
-    position: fixed;
-    height: 100%;
-    overflow-y: auto;
+  width: 250px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-medium);
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logo-img {
-    width: 60px;
-    height: auto;
-    display: block;
-    margin-bottom: 10px;
+  width: 60px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .version {
-    font-size: 12px;
-    opacity: 0.7;
+  font-size: 12px;
+  opacity: 0.7;
 }
 
 nav ul {
-    list-style: none;
-    margin-top: 30px;
+  list-style: none;
+  margin-top: 30px;
 }
 
 nav li {
-    padding: 12px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 /* **Sidebar: Texto blanco fijo** */
 nav li span {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--white); /* Asegura el color blanco por defecto para el texto */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white);
+  /* Asegura el color blanco por defecto para el texto */
 }
 
 nav li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 nav li:hover span {
-    color: var(--white); /* Sobreescribe cualquier cambio de color al pasar el mouse */
+  color: var(--white);
+  /* Sobreescribe cualquier cambio de color al pasar el mouse */
 }
 
 nav li.active {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 nav li.active span {
-    color: var(--white); /* Sobreescribe cualquier cambio de color cuando está activo */
+  color: var(--white);
+  /* Sobreescribe cualquier cambio de color cuando está activo */
 }
 
-nav li a { /* Si hay un <a>, asegúrate que no cambie el color */
-    color: var(--white);
-    text-decoration: none;
+nav li a {
+  /* Si hay un <a>, asegúrate que no cambie el color */
+  color: var(--white);
+  text-decoration: none;
 }
 
 nav li a:visited {
-    color: var(--white);
+  color: var(--white);
 }
 
 nav li a:active {
-    color: var(--white);
+  color: var(--white);
 }
+
 /* **Fin Sidebar** */
 
 .badge {
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
 }
 
 .sidebar-footer {
-    margin-top: auto;
-    padding: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-footer a {
-    color: var(--white);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 10px;
-    font-size: 14px;
+  color: var(--white);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .sidebar-footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Main Content */
 .main-content {
-    flex: 1;
-    margin-left: 250px; /* Deja espacio para el sidebar fijo */
-    padding: 30px; /* Padding para el contenido principal, como en la imagen del dashboard */
-    overflow-y: auto;
+  flex: 1;
+  margin-left: 250px;
+  /* Deja espacio para el sidebar fijo */
+  padding: 30px;
+  /* Padding para el contenido principal, como en la imagen del dashboard */
+  overflow-y: auto;
 }
 
 /* Header */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px; /* Espacio debajo del encabezado */
-    flex-wrap: wrap;
-    gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  /* Espacio debajo del encabezado */
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .header h2 {
-    font-size: 24px;
-    margin: 0; /* Asegura que no tenga margen adicional */
+  font-size: 24px;
+  margin: 0;
+  /* Asegura que no tenga margen adicional */
 }
 
 .highlight {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .date {
-    color: var(--dark-gray);
-    font-size: 14px;
-    margin-top: 5px;
+  color: var(--dark-gray);
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .search {
-    padding: 10px 15px;
-    border: 1px solid var(--light-gray);
-    border-radius: 8px;
-    width: 200px;
-    color: var(--text-color);
+  padding: 10px 15px;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  width: 200px;
+  color: var(--text-color);
 }
 
 .search::placeholder {
-    color: var(--dark-gray);
+  color: var(--dark-gray);
 }
 
 .notification {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 
 .notif-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
 }
 
 .profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* ---------------------------------------------------- */
 /* Estilos para la distribución de los 3 bloques principales del Dashboard */
 /* ---------------------------------------------------- */
 .dashboard-summary {
-    display: flex;
-    gap: 30px; /* Espacio entre los bloques */
-    margin-bottom: 30px; /* Espacio debajo de este grupo de bloques */
+  display: flex;
+  gap: 30px;
+  /* Espacio entre los bloques */
+  margin-bottom: 30px;
+  /* Espacio debajo de este grupo de bloques */
 }
 
 /* Estilos comunes para los bloques principales (tarjetas) */
 .next-class-section,
 .teacher-rating-section,
 .workload-section,
-.calendar-container, /* También aplica a calendario */
-.semester-progress /* Y al progreso del semestre */ {
-    background-color: var(--white);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: var(--shadow-light); /* Sombra ligera, como en la imagen */
-    margin-bottom: 0; /* No debe tener margen inferior si están dentro de dashboard-summary o son el último elemento en su grupo */
+.calendar-container,
+/* También aplica a calendario */
+.semester-progress
+
+/* Y al progreso del semestre */ {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-light);
+  /* Sombra ligera, como en la imagen */
+  margin-bottom: 0;
+  /* No debe tener margen inferior si están dentro de dashboard-summary o son el último elemento en su grupo */
 }
 
 /* Flex para los 3 bloques */
 .next-class-section,
 .teacher-rating-section,
 .workload-section {
-    flex: 1; /* Permite que los 3 bloques compartan el espacio por igual */
+  flex: 1;
+  /* Permite que los 3 bloques compartan el espacio por igual */
 }
 
 /* Estilos para el contenido interno de cada bloque */
 .next-class-section h3,
 .teacher-rating-section h3,
 .workload-section h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: var(--text-color);
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--text-color);
 }
 
 /* Estilos para la información de la Próxima Clase */
 .next-class-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .next-class-info .class-name {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--secondary-color);
-    margin-bottom: 5px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin-bottom: 5px;
 }
 
 .next-class-info .class-code {
-    background-color: var(--light-gray);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 16px;
-    color: var(--dark-gray);
-    align-self: flex-start;
+  background-color: var(--light-gray);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--dark-gray);
+  align-self: flex-start;
 }
 
 .next-class-info .class-time {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--dark-gray);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark-gray);
 }
 
 /* Estilos para la Calificación Docente */
 .teacher-rating-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .rating-value {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--secondary-color);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--secondary-color);
 }
 
 /* Estilos para la Intensidad Horaria */
 .workload-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .workload-hours {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--secondary-color);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--secondary-color);
 }
 
 /* Calendario */
 .calendar-container {
-    margin-bottom: 30px; /* Margen inferior para separarlo del siguiente elemento */
-    /* background-color, border-radius, padding, box-shadow ya están en la regla común */
+  margin-bottom: 30px;
+  /* Margen inferior para separarlo del siguiente elemento */
+  /* background-color, border-radius, padding, box-shadow ya están en la regla común */
 }
 
 .calendar {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .calendar th {
-    text-align: center;
-    padding: 10px;
-    font-weight: 600;
-    color: var(--dark-gray);
-    font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  color: var(--dark-gray);
+  font-size: 14px;
 }
 
 .calendar td {
-    text-align: center;
-    padding: 15px 10px;
-    border: 1px solid var(--light-gray);
-    position: relative;
+  text-align: center;
+  padding: 15px 10px;
+  border: 1px solid var(--light-gray);
+  position: relative;
 }
 
 .calendar .current-day {
-    background-color: #e3f2fd;
-    font-weight: bold;
-    color: var(--text-color);
+  background-color: #e3f2fd;
+  font-weight: bold;
+  color: var(--text-color);
 }
 
 .calendar .weekend {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .class-indicator {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background-color: var(--secondary-color);
-    border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
 }
 
 /* Semester Progress */
 .semester-progress {
-    /* background-color, border-radius, padding, box-shadow ya están en la regla común */
-    margin-top: 20px; /* Mantener este margen si es el único elemento después del calendario */
-    margin-bottom: 30px; /* Para asegurar que no quede pegado al final si es el último contenido */
+  /* background-color, border-radius, padding, box-shadow ya están en la regla común */
+  margin-top: 20px;
+  /* Mantener este margen si es el único elemento después del calendario */
+  margin-bottom: 30px;
+  /* Para asegurar que no quede pegado al final si es el último contenido */
 }
 
 .semester-progress h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: var(--text-color);
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
 }
 
 .progress-bar {
-    height: 10px;
-    background-color: var(--light-gray);
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 5px;
+  height: 10px;
+  background-color: var(--light-gray);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
 }
 
 .progress {
-    height: 100%;
-    background-color: var(--secondary-color);
-    transition: width 0.5s ease;
+  height: 100%;
+  background-color: var(--secondary-color);
+  transition: width 0.5s ease;
 }
 
 .progress-value {
-    font-size: 14px;
-    color: var(--dark-gray);
-    display: block;
-    text-align: right;
+  font-size: 14px;
+  color: var(--dark-gray);
+  display: block;
+  text-align: right;
 }
-
 
 /* ---------------------------------------------------- */
 /* Estilos para Mensajería Interna (se mantienen) */
 /* ---------------------------------------------------- */
 
 .internal-messages-content {
-    background-color: var(--white);
-    border-radius: 12px; /* Asegura el mismo radio de borde que las demás tarjetas */
-    box-shadow: var(--shadow-light); /* Misma sombra */
-    padding: 25px;
-    margin: 30px 0; /* Ajustado para que el margen sea consistente */
-    /* Si se usa content-box general, entonces la margin-bottom se puede ajustar ahí */
+  background-color: var(--white);
+  border-radius: 12px;
+  /* Asegura el mismo radio de borde que las demás tarjetas */
+  box-shadow: var(--shadow-light);
+  /* Misma sombra */
+  padding: 25px;
+  margin: 30px 0;
+  /* Ajustado para que el margen sea consistente */
+  /* Si se usa content-box general, entonces la margin-bottom se puede ajustar ahí */
 }
 
 .internal-messages-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 25px;
-    font-size: 24px;
-    text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-size: 24px;
+  text-align: center;
 }
 
 .conversation-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
 .conversation-item {
-    display: block;
-    background-color: var(--white);
-    border: 1px solid var(--light-gray);
-    border-radius: 8px;
-    padding: 15px 20px;
-    text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-    color: var(--text-color);
+  display: block;
+  background-color: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  padding: 15px 20px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
+  color: var(--text-color);
 }
 
 .conversation-item .conversation-title {
-    font-weight: 700;
-    color: var(--primary-color);
-    font-size: 1.1em;
-    display: block;
-    margin-bottom: 5px;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 1.1em;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .conversation-item .conversation-preview {
-    font-size: 0.95em;
-    color: var(--dark-gray);
-    margin: 5px 0 0;
-    line-height: 1.4;
-    max-height: 2.8em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
+  font-size: 0.95em;
+  color: var(--dark-gray);
+  margin: 5px 0 0;
+  line-height: 1.4;
+  max-height: 2.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .conversation-item .conversation-date {
-    font-size: 0.85em;
-    color: var(--dark-gray);
-    float: right;
-    margin-top: -20px;
+  font-size: 0.85em;
+  color: var(--dark-gray);
+  float: right;
+  margin-top: -20px;
 }
 
 .conversation-item:hover {
-    background-color: #f0f2f4;
-    border-color: var(--secondary-color);
-    transform: translateY(-2px);
+  background-color: #f0f2f4;
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
 .conversation-item:hover .conversation-title {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .conversation-item:hover .conversation-preview {
-    color: var(--dark-gray);
+  color: var(--dark-gray);
 }
 
 .conversation-item:hover .conversation-date {
-    color: var(--dark-gray);
+  color: var(--dark-gray);
 }
 
 .conversation-item:active .conversation-title,
@@ -497,452 +550,1020 @@ nav li a:active {
 .conversation-item:visited .conversation-title,
 .conversation-item:visited .conversation-preview,
 .conversation-item:visited .conversation-date {
-    color: inherit;
+  color: inherit;
 }
 
 .conversation-item.unread {
-    background-color: #e3f2fd;
-    border-left: 5px solid var(--secondary-color);
+  background-color: #e3f2fd;
+  border-left: 5px solid var(--secondary-color);
 }
 
 .conversation-item.unread .conversation-title,
 .conversation-item.unread .conversation-preview,
 .conversation-item.unread .conversation-date {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .new-message-btn {
-    background-color: var(--white);
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
+  background-color: var(--white);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
 }
 
 .new-message-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
 }
 
 .new-message-btn:active {
-    background-color: #1a3544;
-    color: var(--white);
-    border-color: #1a3544;
+  background-color: #1a3544;
+  color: var(--white);
+  border-color: #1a3544;
 }
 
 /* Botones generales (si los necesitas para otras partes) */
 .btn-primary {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
 }
 
 .btn-primary:hover {
-    background-color: #408da0;
-    transform: translateY(-2px);
+  background-color: #408da0;
+  transform: translateY(-2px);
 }
 
+.btn-secondary {
+  /* Nuevo botón secundario para el modal */
+  background-color: var(--light-gray);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btn-secondary:hover {
+  background-color: var(--dark-gray);
+  color: var(--white);
+  transform: translateY(-2px);
+}
 
 /* Styles for verConversacion.css */
 .conversation-detail-container {
-    background-color: var(--white);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    padding: 25px;
-    margin: 30px 0; /* Consistente con otros bloques */
-    display: flex;
-    flex-direction: column;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  padding: 25px;
+  margin: 30px 0;
+  /* Consistente con otros bloques */
+  display: flex;
+  flex-direction: column;
 }
 
 .conversation-header-detail {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .conversation-header-detail h3 {
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 1.5em;
-    flex-grow: 1;
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.5em;
+  flex-grow: 1;
 }
 
 .actions-group {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.btn-back, .btn-reply-redirect {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
+.btn-back,
+.btn-reply-redirect {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
 }
 
-.btn-back:hover, .btn-reply-redirect:hover {
-    background-color: #408da0;
-    transform: translateY(-2px);
+.btn-back:hover,
+.btn-reply-redirect:hover {
+  background-color: #408da0;
+  transform: translateY(-2px);
 }
 
 .messages-list {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding-right: 10px;
-    margin-bottom: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-bottom: 20px;
 }
 
 .message-item {
-    display: flex;
-    margin-bottom: 15px;
+  display: flex;
+  margin-bottom: 15px;
 }
 
 .message-item.sent {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .message-item.received {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .message-bubble {
-    max-width: 70%;
-    padding: 12px 18px;
-    border-radius: 20px;
-    line-height: 1.5;
-    word-wrap: break-word;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-width: 70%;
+  padding: 12px 18px;
+  border-radius: 20px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .message-item.sent .message-bubble {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border-bottom-right-radius: 2px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-bottom-right-radius: 2px;
 }
 
 .message-item.received .message-bubble {
-    background-color: var(--light-gray); /* Usar light-gray para el fondo */
-    color: var(--text-color);
-    border: 1px solid var(--light-gray); /* Borde sutil */
-    border-bottom-left-radius: 2px;
+  background-color: var(--light-gray);
+  /* Usar light-gray para el fondo */
+  color: var(--text-color);
+  border: 1px solid var(--light-gray);
+  /* Borde sutil */
+  border-bottom-left-radius: 2px;
 }
 
 .message-bubble p {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .message-bubble .message-meta {
-    display: block;
-    font-size: 0.75em;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 5px;
-    text-align: right;
-}
-.message-item.received .message-bubble .message-meta {
-    color: var(--dark-gray);
+  display: block;
+  font-size: 0.75em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+  text-align: right;
 }
 
+.message-item.received .message-bubble .message-meta {
+  color: var(--dark-gray);
+}
 
 /* Styles for nuevoMensaje.css (combined here for completeness) */
 .compose-message-container {
-    background-color: var(--white);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    padding: 25px;
-    margin: 30px auto; /* Centra el bloque horizontalmente y da margen vertical */
-    max-width: 800px; /* Ancho deseado */
-    width: 90%; /* Ocupa el 90% del ancho disponible hasta el max-width */
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  padding: 25px;
+  margin: 30px auto;
+  /* Centra el bloque horizontalmente y da margen vertical */
+  max-width: 800px;
+  /* Ancho deseado */
+  width: 90%;
+  /* Ocupa el 90% del ancho disponible hasta el max-width */
 }
 
 .message-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .form-group {
-    margin-bottom: 15px; /* Espacio entre grupos de formulario */
+  margin-bottom: 15px;
+  /* Espacio entre grupos de formulario */
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--primary-color);
-    font-size: 1.1em;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.1em;
 }
 
 .form-group input[type="text"],
-.form-group textarea {
-    width: 100%; /* Ocupa todo el ancho disponible de su contenedor */
-    padding: 10px;
-    border: 1px solid var(--light-gray);
-    border-radius: 8px;
-    font-family: var(--font-family);
-    font-size: 1em;
-    box-sizing: border-box;
-    color: var(--text-color);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.form-group textarea,
+.form-group select,
+/* Añadir select a los estilos de input/textarea */
+.form-group input[type="number"] {
+  /* Añadir input type number */
+  width: 100%;
+  /* Ocupa todo el ancho disponible de su contenedor */
+  padding: 10px;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 1em;
+  box-sizing: border-box;
+  color: var(--text-color);
+  background-color: var(--white);
+  /* Fondo blanco para inputs del modal */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-group input[type="text"]:focus,
-.form-group textarea:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 0.2rem rgba(84, 167, 185, 0.25);
-    outline: none;
+.form-group textarea:focus,
+.form-group select:focus,
+.form-group input[type="number"]:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.2rem rgba(84, 167, 185, 0.25);
+  outline: none;
 }
 
-.compose-message-container .form-group textarea { /* Especificidad para el resize */
-    resize: none !important; /* Desactiva la redimensión */
-    min-height: 100px;
-    height: 150px; /* Altura fija para el textarea, ajusta si lo necesitas más grande */
+.compose-message-container .form-group textarea {
+  /* Especificidad para el resize */
+  resize: vertical;
+  /* Permite redimensionar verticalmente, quitar 'none' */
+  min-height: 100px;
+  height: auto;
+  /* Dejar que el contenido defina la altura, con min-height */
 }
 
 .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 /* Styles for alertasAnuncios.css (combined here for completeness) */
 .announcements-container {
-    background-color: var(--white);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    padding: 25px;
-    margin: 30px 0; /* Consistente con otros bloques */
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  padding: 25px;
+  margin: 30px 0;
+  /* Consistente con otros bloques */
 }
 
 .announcements-container h3 {
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 .announcement-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .announcement-item {
-    border: 1px solid var(--light-gray);
-    border-radius: 8px;
-    padding: 15px 20px;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  padding: 15px 20px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .announcement-item:hover {
-    border-color: var(--secondary-color);
-    transform: translateY(-2px);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
 .announcement-item.new {
-    border-left: 5px solid var(--accent-color);
-    background-color: #fffbe6;
+  border-left: 5px solid var(--accent-color);
+  background-color: #fffbe6;
 }
 
 .announcement-item h4 {
-    margin: 0 0 5px 0;
-    color: var(--primary-color);
-    font-size: 1.2em;
+  margin: 0 0 5px 0;
+  color: var(--primary-color);
+  font-size: 1.2em;
 }
 
 .announcement-item p {
-    font-size: 0.95em;
-    color: var(--dark-gray);
-    line-height: 1.5;
-    margin-bottom: 10px;
+  font-size: 0.95em;
+  color: var(--dark-gray);
+  line-height: 1.5;
+  margin-bottom: 10px;
 }
 
 .announcement-meta {
-    font-size: 0.85em;
-    color: var(--dark-gray);
-    text-align: right;
+  font-size: 0.85em;
+  color: var(--dark-gray);
+  text-align: right;
 }
 
-/* Responsive Adjustments */
+/* ---------------------------------------------------- */
+/* NUEVOS ESTILOS ESPECÍFICOS para la tabla de Gestión de Calificaciones */
+/* AJUSTES PARA FONDO CLARO */
+/* ---------------------------------------------------- */
+
+.grade-management-container {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-light);
+}
+
+.section-title {
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+.filters-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filters-actions label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.filters-actions select {
+  padding: 8px 12px;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 0.95em;
+  color: var(--text-color);
+  background-color: var(--white);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236c757d"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.filters-actions select:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.2rem rgba(84, 167, 185, 0.25);
+  outline: none;
+}
+
+.filters-actions .btn-primary {
+  padding: 9px 18px;
+  font-size: 0.95em;
+}
+
+.filters-actions .add-new-grade-btn {
+  /* CLASE CAMBIADA A add-new-grade-btn */
+  background-color: var(--primary-color);
+}
+
+.filters-actions .add-new-grade-btn:hover {
+  background-color: #1a3544;
+}
+
+/* Contenedor de la tabla CLARA */
+.light-table-wrapper {
+  /* CLASE CAMBIADA A light-table-wrapper */
+  background-color: var(--table-bg-light);
+  /* Fondo CLARO de la tabla */
+  border: 1px solid var(--table-border-light);
+  /* Borde alrededor de la tabla */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  /* Sombra ligera para la tabla clara */
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* ¡Añadir esta propiedad! */
+}
+
+.grades-table thead th {
+  background-color: var(--table-header-bg-light);
+  /* Fondo del encabezado CLARO */
+  color: var(--table-text-dark);
+  /* Texto OSCURO en encabezados */
+  padding: 15px 20px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid var(--table-border-light);
+  /* Borde inferior en encabezado CLARO */
+  white-space: nowrap;
+}
+
+/* Estilo específico para la primera columna del encabezado */
+.grades-table thead th.header-eval-cal {
+  background-color: var(--table-green-active);
+  /* Fondo verde se mantiene */
+  color: var(--white);
+  /* Texto blanco se mantiene */
+  font-weight: 700;
+}
+
+/* Estilo específico para la segunda columna del encabezado (subrayado) */
+.grades-table thead th.header-registro {
+  text-decoration: underline;
+}
+
+.grades-table thead th.header-descripcion {
+    /* Estilos existentes */
+    width: 45%;
+    min-width: 250px;
+    
+    /* ¡Añadir estas líneas para el ajuste de texto en el encabezado! */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.grades-table tbody td {
+  background-color: var(--table-bg-light);
+  /* Fondo de las celdas del cuerpo CLARO */
+  color: var(--table-text-dark);
+  /* Texto OSCURO en celdas */
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--table-border-light);
+  /* Borde entre filas CLARO */
+  vertical-align: top;
+}
+
+.grades-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Estilo para filas al pasar el mouse */
+.grades-table tbody tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+/* Estilos para el contenido de la primera columna (Evaluación y Calificaciones) */
+.grade-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.grade-item-info .grade-evaluation-name {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: var(--table-link-underline-dark);
+  /* Color de enlace para destacar (oscuro) */
+}
+
+.grade-item-info .grade-student-name {
+  font-size: 0.9em;
+  color: var(--dark-gray);
+  /* Oscuro para contraste */
+}
+
+.grade-item-info .grade-course-name {
+  font-size: 0.85em;
+  color: var(--dark-gray);
+  /* Oscuro para contraste */
+}
+
+/* Estilos para el campo de calificación y botones de acción */
+.grade-input {
+  width: 80px;
+  padding: 8px 10px;
+  border: 1px solid var(--table-input-border-light);
+  /* Borde de input claro */
+  border-radius: 5px;
+  background-color: var(--table-input-bg-light);
+  /* Fondo de input claro */
+  color: var(--table-text-dark);
+  /* Texto oscuro para input */
+  font-family: var(--font-family);
+  font-size: 1em;
+  text-align: center;
+  margin-right: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grade-input:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.2rem rgba(84, 167, 185, 0.25);
+  outline: none;
+}
+
+.grade-input[readonly] {
+  background-color: transparent;
+  /* Fondo transparente cuando es readonly */
+  border-color: transparent;
+  /* Sin borde visible cuando readonly */
+  cursor: default;
+  font-weight: 600;
+}
+
+.btn-action {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-left: 5px;
+}
+
+.btn-action:hover {
+  background-color: #408da0;
+  transform: translateY(-1px);
+}
+
+.btn-action.save-btn {
+  background-color: var(--table-green-active);
+}
+
+.btn-action.save-btn:hover {
+  background-color: #449d44;
+}
+
+/* ---------------------------------------------------- */
+/* Estilos para que la descripción se adapte al ancho */
+/* ---------------------------------------------------- */
+.grades-table tbody td.cell-descripcion {
+  /* Permitir que el texto se ajuste al ancho de la celda */
+  word-wrap: break-word;
+  /* Rompe palabras largas */
+  overflow-wrap: break-word;
+  /* Una propiedad más moderna */
+  white-space: normal;
+  /* Asegura que el texto no se quede en una sola línea */
+  /* Para controlar el ancho, podemos usar flex-basis en un layout flex,
+       o un porcentaje si la tabla lo permite y las otras columnas tienen ancho fijo.
+       En este caso, la tabla lo manejará automáticamente con word-wrap
+       si las otras columnas no son excesivamente anchas.
+       Podemos darle un ancho preferido si queremos que sea más estrecha: */
+  /* width: 40%; */
+  /* Descomentar y ajustar si las otras columnas son demasiado anchas */
+}
+
+/* ---------------------------------------------------- */
+/* Estilos del Modal */
+/* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
+/* Estilos del Modal */
+/* ---------------------------------------------------- */
+.modal {
+  display: none;
+  /* Oculto por defecto */
+  position: fixed;
+  /* Permanece en la misma posición incluso al desplazarse */
+  z-index: 1000;
+  /* Se superpone a todo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Ancho completo */
+  height: 100%;
+  /* Altura completa */
+  overflow: auto;
+  /* Habilitar desplazamiento si el contenido es demasiado grande */
+  background-color: rgba(0, 0, 0, 0.6);
+  /* Fondo semi-transparente oscuro */
+  align-items: center;
+  /* Centrar verticalmente */
+  justify-content: center;
+  /* Centrar horizontalmente */
+}
+
+.modal-content {
+  background-color: var(--white);
+  margin: auto;
+  /* Centrar en el espacio disponible */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-medium);
+  /* Sombra más pronunciada para el modal */
+  width: 90%;
+  /* Ancho predeterminado */
+  max-width: 600px;
+  /* Ancho máximo */
+  position: relative;
+  animation: fadeIn 0.3s ease-out;
+  /* Animación de aparición */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-size: 22px;
+  text-align: center;
+}
+
+/* Estilos para la 'X' de cerrar en la esquina del modal (sin apariencia de botón) */
+.close-modal-x { /* Nueva clase para la 'X' */
+    color: var(--dark-gray);
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-x:hover,
+.close-modal-x:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.form-actions-modal {
+  /* Estilos específicos para los botones del modal */
+  display: flex;
+  justify-content: flex-end;
+  /* Alinear a la derecha */
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* ---------------------------------------------------- */
+/* Responsive Adjustments (Actualizados) */
+/* ---------------------------------------------------- */
 @media (max-width: 992px) {
-    .sidebar {
-        width: 200px;
-    }
-    .main-content {
-        margin-left: 200px;
-        padding: 20px; /* Reducir padding en pantallas medianas */
-    }
-    .header h2 {
-        font-size: 1.5em;
-    }
-    .header-actions {
-        gap: 10px;
-    }
-    .header-actions .search {
-        width: 150px;
-    }
-    .dashboard-summary {
-        gap: 20px; /* Menos espacio entre bloques en tabletas */
-    }
-    .compose-message-container {
-        max-width: 700px;
-    }
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+    padding: 20px;
+  }
+
+  .header h2 {
+    font-size: 1.5em;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  .header-actions .search {
+    width: 150px;
+  }
+
+  .dashboard-summary {
+    gap: 20px;
+  }
+
+  .compose-message-container {
+    max-width: 700px;
+  }
+
+  /* Ajustes para el nuevo bloque de gestión de calificaciones */
+  .grade-management-container {
+    padding: 25px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .filters-actions {
+    flex-direction: column;
+    /* Apilar filtros y botones */
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .filters-actions select {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .filters-actions .btn-primary {
+    width: auto;
+    align-self: flex-end;
+    /* Alinear botones a la derecha */
+  }
+
+  .grades-table thead th,
+  .grades-table tbody td {
+    padding: 12px 15px;
+  }
+
+  .grade-input {
+    width: 70px;
+  }
+
+  .btn-action {
+    padding: 6px 10px;
+    font-size: 0.85em;
+  }
+
+  .modal-content {
+    width: 95%;
+    /* Más ancho en pantallas medianas */
+    padding: 25px;
+  }
 }
 
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: static;
-        padding-bottom: 0;
-        box-shadow: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .sidebar nav ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 10px 0;
-    }
-    .sidebar nav ul li {
-        margin: 5px;
-    }
-    .sidebar nav ul li span {
-        color: var(--white);
-    }
-    .sidebar .logo,
-    .sidebar .sidebar-footer {
-        display: none;
-    }
-    .main-content {
-        margin-left: 0;
-        padding-top: 20px;
-    }
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 20px;
-    }
-    .header-actions {
-        width: 100%;
-        justify-content: space-around;
-        margin-top: 10px;
-    }
-    .header-actions .search {
-        width: 100%;
-        order: 1;
-    }
-    .header-actions .notification,
-    .header-actions .profile {
-        order: 2;
-    }
-    /* Asegurar que los bloques principales del dashboard se apilen en móviles */
-    .dashboard-summary {
-        flex-direction: column;
-        gap: 20px; /* Espacio entre los bloques apilados */
-    }
-    .next-class-section,
-    .teacher-rating-section,
-    .workload-section,
-    .calendar-container,
-    .semester-progress,
-    .internal-messages-content,
-    .conversation-detail-container,
-    .compose-message-container,
-    .announcements-container {
-        margin: 15px; /* Reducir márgenes en móviles */
-        padding: 15px;
-        width: auto; /* Permite que tome el ancho completo disponible */
-        max-width: none; /* Elimina la restricción de ancho máximo */
-    }
-    .message-quick-access {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    .message-card {
-        width: 90%;
-        max-width: none;
-    }
-    .conversation-header-detail {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .actions-group {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-    }
-    .btn-back, .btn-reply-redirect {
-        width: 100%;
-        margin-left: 0;
-    }
-    .message-item .message-bubble {
-        max-width: 90%;
-    }
-    .compose-message-container {
-        max-width: 95%; /* Ocupa casi todo el ancho en móviles */
-        width: 95%;
-    }
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding-bottom: 0;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .sidebar nav ul li {
+    margin: 5px;
+  }
+
+  .sidebar nav ul li span {
+    color: var(--white);
+  }
+
+  .sidebar .logo,
+  .sidebar .sidebar-footer {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding-top: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+
+  .header-actions .search {
+    width: 100%;
+    order: 1;
+  }
+
+  .header-actions .notification,
+  .header-actions .profile {
+    order: 2;
+  }
+
+  .dashboard-summary {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .next-class-section,
+  .teacher-rating-section,
+  .workload-section,
+  .calendar-container,
+  .semester-progress,
+  .internal-messages-content,
+  .conversation-detail-container,
+  .compose-message-container,
+  .announcements-container {
+    margin: 15px;
+    padding: 15px;
+    width: auto;
+    max-width: none;
+  }
+
+  .message-quick-access {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .message-card {
+    width: 90%;
+    max-width: none;
+  }
+
+  .conversation-header-detail {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn-back,
+  .btn-reply-redirect {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .message-item .message-bubble {
+    max-width: 90%;
+  }
+
+  .compose-message-container {
+    max-width: 95%;
+    width: 95%;
+  }
+
+  /* Ajustes para el nuevo bloque de gestión de calificaciones en 768px */
+  .grade-management-container {
+    padding: 20px;
+    margin: 15px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .filters-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filters-actions select,
+  .filters-actions .btn-primary {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .light-table-wrapper {
+    /* Clase actualizada */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .grades-table {
+    min-width: 600px;
+  }
+
+  .grades-table thead th,
+  .grades-table tbody td {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .grade-item-info .grade-evaluation-name,
+  .grade-item-info .grade-student-name,
+  .grade-item-info .grade-course-name {
+    font-size: 0.85em;
+  }
+
+  .grade-input {
+    width: 60px;
+    padding: 6px 8px;
+  }
+
+  .btn-action {
+    padding: 5px 8px;
+    font-size: 0.8em;
+  }
+
+  .modal-content {
+    width: 95%;
+    /* Más ancho en pantallas medianas */
+    padding: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-    .header-actions {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    .header-actions .notification,
-    .header-actions .profile {
-        width: 100%;
-        justify-content: center;
-    }
-    .form-group input[type="text"],
-    .form-group textarea {
-        width: 100%;
-    }
-    .form-actions {
-        flex-direction: column;
-        align-items: center;
-    }
-    .form-actions .btn {
-        width: 90%;
-    }
+  .header-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-actions .notification,
+  .header-actions .profile {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-group input[type="text"],
+  .form-group textarea,
+  .form-group select,
+  .form-group input[type="number"] {
+    /* Asegurar que sean 100% de ancho */
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-actions .btn {
+    width: 90%;
+  }
+
+  /* Ajustes adicionales para la tabla en pantallas muy pequeñas */
+  .grades-table thead th,
+  .grades-table tbody td {
+    font-size: 0.8em;
+    padding: 8px;
+  }
+
+  .grade-input {
+    width: 50px;
+    font-size: 0.8em;
+  }
+
+  .btn-action {
+    padding: 4px 6px;
+    font-size: 0.75em;
+  }
+
+  .modal-content {
+    padding: 15px;
+    width: 98%;
+    /* Casi todo el ancho */
+  }
+
+  .form-actions-modal {
+    flex-direction: column;
+    /* Apilar botones del modal */
+    gap: 10px;
+  }
+
+  .form-actions-modal .btn-primary,
+  .form-actions-modal .btn-secondary {
+    width: 100%;
+    /* Botones del modal ocupan todo el ancho */
+  }
 }

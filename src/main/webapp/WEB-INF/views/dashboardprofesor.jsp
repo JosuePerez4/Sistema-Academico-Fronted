@@ -23,17 +23,24 @@
                     </div>
                     <nav>
                         <ul>
-                            <li class="active"><span>Inicio</span></li>
-                            <li><a href="/profesor/clases">Mis Clases</a></li>
-                            <li><a href="/profesor/calificaciones">Calificaciones</a></li>
-                            <li><a href="/mensajes"><span>Mensajes
-                                    <span class="badge">${notificacionesPendientes}</span></span></a>
-                            </li>
-                            <li><span>Horario</span></li>
-                            <li><span>Asistencias</span></li>
-                            <li><a href="/profesor/evaluaciones">Evaluaciones</a></li>
-                            <li><a href="/profesor/ajustes">Ajustes</a></li>
-                            <li><a href="/profesor/recursos">Recursos Académicos</a></li>
+                            <li><a href="/profesor/dashboard"
+                                    class="${currentPage == 'dashboard' ? 'active' : ''}">Inicio</a></li>
+                            <li><a href="/profesor/clases" class="${currentPage == 'clases' ? 'active' : ''}">Mis
+                                    Clases</a></li>
+                            <li><a href="/profesor/calificaciones"
+                                    class="${currentPage == 'calificaciones' ? 'active' : ''}">Calificaciones</a></li>
+                            <li><a href="/mensajes" class="${currentPage == 'mensajes' ? 'active' : ''}">Mensajes <span
+                                        class="badge">3</span></a></li>
+                            <li><a href="/profesor/horario"
+                                    class="${currentPage == 'horario' ? 'active' : ''}">Horario</a></li>
+                            <li><a href="/profesor/asistencias"
+                                    class="${currentPage == 'asistencias' ? 'active' : ''}">Asistencias</a></li>
+                            <li><a href="/profesor/evaluaciones"
+                                    class="${currentPage == 'evaluaciones' ? 'active' : ''}">Evaluaciones</a></li>
+                            <li><a href="/profesor/ajustes"
+                                    class="${currentPage == 'ajustes' ? 'active' : ''}">Ajustes</a></li>
+                            <li><a href="/profesor/recursos"
+                                    class="${currentPage == 'recursos' ? 'active' : ''}">Recursos Académicos</a></li>
                         </ul>
                     </nav>
                     <div class="sidebar-footer">
