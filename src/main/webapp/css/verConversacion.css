@@ -1,0 +1,182 @@
+/* Estilos específicos para la página de Ver Conversación */
+.conversation-detail-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-header-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.conversation-header-detail h3 {
+    font-size: 22px;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.btn-back {
+    padding: 8px 15px; /* Botón de volver más pequeño */
+    font-size: 14px;
+}
+
+.messages-list {
+    flex-grow: 1; /* Permite que la lista de mensajes ocupe el espacio disponible */
+    overflow-y: auto; /* Permite scroll si hay muchos mensajes */
+    max-height: 500px; /* Altura máxima para la lista de mensajes */
+    padding-right: 15px; /* Espacio para la barra de scroll si aparece */
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre mensajes */
+}
+
+.message-item {
+    display: flex;
+}
+
+.message-item.sent {
+    justify-content: flex-end; /* Mensajes enviados a la derecha */
+}
+
+.message-item.received {
+    justify-content: flex-start; /* Mensajes recibidos a la izquierda */
+}
+
+.message-bubble {
+    max-width: 70%; /* Ancho máximo para el globo de mensaje */
+    padding: 12px 18px;
+    border-radius: 18px; /* Bordes más suaves para el globo */
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.message-item.sent .message-bubble {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border-bottom-right-radius: 4px; /* Pequeña muesca */
+}
+
+.message-item.received .message-bubble {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    border-bottom-left-radius: 4px; /* Pequeña muesca */
+}
+
+.message-bubble p {
+    margin-bottom: 5px;
+    font-size: 15px;
+    line-height: 1.5;
+    word-wrap: break-word; /* Rompe palabras largas */
+}
+
+.message-meta {
+    display: block;
+    font-size: 11px;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.7); /* Para mensajes enviados */
+}
+.message-item.received .message-meta {
+    color: var(--dark-gray); /* Para mensajes recibidos */
+}
+
+
+.reply-section {
+    padding-top: 20px;
+    border-top: 1px solid var(--light-gray);
+}
+
+.reply-form {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end; /* Alinea el botón con el textarea */
+}
+
+.reply-form textarea {
+    flex-grow: 1; /* El textarea ocupa el espacio restante */
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 60px;
+    max-height: 150px;
+}
+
+.btn-reply {
+    padding: 10px 20px;
+    white-space: nowrap; /* Evita que el texto del botón se rompa */
+}
+
+/* Estilo para el nuevo botón de responder que redirige */
+.btn-reply-redirect {
+    /* Puedes darle el mismo estilo que .btn-primary o un estilo ligeramente diferente */
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+    margin-left: 10px; /* Espacio entre Volver y Responder */
+}
+
+.btn-reply-redirect:hover {
+    background-color: #4292a4;
+    transform: translateY(-2px);
+}
+
+.actions-group {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+    align-items: center;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .conversation-detail-container {
+        padding: 20px;
+    }
+    .conversation-header-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .conversation-header-detail h3 {
+        font-size: 20px;
+    }
+    .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+    .messages-list {
+        max-height: 300px; /* Menor altura en móviles */
+        padding-right: 0;
+    }
+    .message-bubble {
+        max-width: 90%;
+    }
+    .reply-form {
+        flex-direction: column;
+    }
+    .reply-form textarea {
+        width: 100%;
+    }
+    .btn-reply {
+        width: 100%;
+    }
+}

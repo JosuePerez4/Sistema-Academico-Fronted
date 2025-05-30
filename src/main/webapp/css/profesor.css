@@ -365,3 +365,25 @@ nav li span {
     display: block;
     text-align: right;
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        padding: 10px 0;
+    }
+    nav ul {
+        display: flex; /* Ocultar o convertir en un menú de hamburguesa */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav li {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+    .dashboard-summary {
+        flex-direction: column;
+    }
+}
