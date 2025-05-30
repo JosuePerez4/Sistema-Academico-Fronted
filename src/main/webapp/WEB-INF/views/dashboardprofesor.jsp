@@ -23,19 +23,20 @@
                     <nav>
                         <ul>
                             <li class="active"><span>Inicio</span></li>
-                            <li><span>Mis Clases</span></li>
-                            <li><span>Calificaciones</span></li>
+                            <li><a href="/profesor/clases">Mis Clases</a></li>
+                            <li><a href="/profesor/calificaciones">Calificaciones</a></li>
                             <li><span>Mensajes <span class="badge">3</span></span></li>
                             <li><span>Horario</span></li>
                             <li><span>Asistencias</span></li>
-                            <li><span>Reportes</span></li>
-                            <li><span>Ajustes</span></li>
+                            <li><a href="/profesor/evaluaciones">Evaluaciones</a></li>
+                            <li><a href="/profesor/ajustes">Ajustes</a></li>
+                            <li><a href="/profesor/recursos">Recursos Académicos</a></li>
                         </ul>
                     </nav>
                     <div class="sidebar-footer">
-                        <a href="#">Ayuda</a>
-                        <a href="#">Contáctenos</a>
-                        <a href="#">Cerrar sesión</a>
+                        <a href="/ayuda">Ayuda</a>
+                        <a href="/profesor/contacto">Contáctenos</a>
+                        <a href="/logout">Cerrar sesión</a>
                     </div>
                 </aside>
 
