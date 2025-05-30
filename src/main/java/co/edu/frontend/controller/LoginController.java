@@ -62,7 +62,24 @@ public class LoginController {
                 session.setAttribute("userEmail", usuario.getCorreo());
                 session.setAttribute("userName", usuario.getNombre());
 
-                return "redirect:/dashboard";
+                // Redirigir según el rol del usuario
+                String userRole = usuario.getRol().toLowerCase();
+                System.out.println("Usuario autenticado - Rol: " + userRole + ", Nombre: " + usuario.getNombre());
+
+                switch (userRole) {
+                    case "admin":
+                    case "administrador":
+                        return "redirect:/admin/dashboard";
+                    case "docente":
+                    case "profesor":
+                        return "redirect:/profesor/dashboard";
+                    case "estudiante":
+                        System.out.println("Redirigiendo a dashboard de estudiante");
+                        return "redirect:/estudiantes/dashboard";
+                    default:
+                        System.out.println("Rol no reconocido: " + userRole);
+                        return "redirect:/login";
+                }
             } else {
                 model.addAttribute("error", "Error al iniciar sesión. Intenta nuevamente.");
                 return "login";
@@ -74,18 +91,6 @@ public class LoginController {
             model.addAttribute("error", "Error al contactar el servicio. Intenta más tarde.");
             return "login";
         }
-    }
-
-    @GetMapping("/dashboard")
-    public String dashboard(HttpSession session, Model model) {
-        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
-        if (user == null)
-            return "redirect:/login";
-
-        model.addAttribute("nombre", user.getNombre());
-        model.addAttribute("correo", user.getCorreo());
-        model.addAttribute("rol", user.getRol());
-        return "dashboard";
     }
 
     @GetMapping("/logout")
@@ -239,5 +244,20 @@ public class LoginController {
             model.addAttribute("token", token);
             return "resetPassword";
         }
+    }
+
+    // Métodos auxiliares para verificar roles
+    private boolean isAdmin(String rol) {
+        String rolLower = rol.toLowerCase();
+        return rolLower.equals("admin") || rolLower.equals("administrador");
+    }
+
+    private boolean isProfesor(String rol) {
+        String rolLower = rol.toLowerCase();
+        return rolLower.equals("docente") || rolLower.equals("profesor");
+    }
+
+    private boolean isEstudiante(String rol) {
+        return rol.toLowerCase().equals("estudiante");
     }
 }
