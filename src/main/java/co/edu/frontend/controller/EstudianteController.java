@@ -38,7 +38,7 @@ public class EstudianteController {
         try {
             // Primero verificamos si existe el estudiante
             ResponseEntity<EstudianteRequestDTO> response = restTemplate.getForEntity(
-                    backendUrl + "/estudiantes/codigo/" + codigo,
+                    backendUrl + "/api/estudiante/codigo/" + codigo,
                     EstudianteRequestDTO.class);
 
             if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
@@ -79,7 +79,7 @@ public class EstudianteController {
 
         try {
             ResponseEntity<String> response = restTemplate.exchange(
-                    backendUrl + "/estudiantes/actualizar/" + codigo,
+                    backendUrl + "/api/estudiante/actualizar/" + codigo,
                     HttpMethod.PUT,
                     requestEntity,
                     String.class);
@@ -117,7 +117,7 @@ public class EstudianteController {
 
         try {
             ResponseEntity<String> response = restTemplate.exchange(
-                    backendUrl + "/estudiantes/registrar",
+                    backendUrl + "/api/estudiante/registrar",
                     HttpMethod.POST,
                     requestEntity,
                     String.class);

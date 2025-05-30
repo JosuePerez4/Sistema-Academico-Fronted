@@ -26,7 +26,7 @@ public class MatriculaController {
     public String mostrarFormularioMatricula(HttpSession session, Model model) {
         LoginResponse user = (LoginResponse) session.getAttribute("usuario");
         if (user == null) {
-            return "matricula";
+            return "redirect:/login";
         }
 
         try {
