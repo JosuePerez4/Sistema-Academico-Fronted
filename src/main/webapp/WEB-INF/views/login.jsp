@@ -22,6 +22,12 @@
 
                     <!-- FORMULARIO INICIA AQUÍ -->
                     <form action="<c:url value='/login' />" method="post">
+                        <c:if test="${not empty error}">
+                            <div class="error-message">${error}</div>
+                        </c:if>
+                        <c:if test="${param.registered == 'true'}">
+                            <div class="success-message">¡Registro exitoso! Por favor, inicia sesión con tus credenciales.</div>
+                        </c:if>
                         <div class="form-group">
                             <label for="correo" class="c-digo-1">Correo</label>
                             <div class="input-wrapper">
