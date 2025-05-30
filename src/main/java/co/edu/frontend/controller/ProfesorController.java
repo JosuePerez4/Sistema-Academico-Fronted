@@ -1,11 +1,15 @@
 package co.edu.frontend.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.util.ArrayList;
-import java.util.List;
+
+import co.edu.frontend.model.LoginResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/profesor")
@@ -39,6 +43,67 @@ public class ProfesorController {
         model.addAttribute("progresoSemestre", 75);
 
         return "dashboardprofesor";
+    }
+
+    @GetMapping("/ayuda")
+    public String ayuda(Model model) {
+        // Aquí deberías obtener el nombre real del profesor y la fecha actual
+        model.addAttribute("nombre", "Profesor"); // Reemplaza por el nombre real si lo tienes
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        return "ayuda";
+    }
+
+    @GetMapping("/contacto")
+    public String contacto(Model model) {
+        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
+        model.addAttribute("nombre", profesor.getNombre());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        return "contacto";
+    }
+
+    @GetMapping("/ajustes")
+    public String ajustes(Model model) {
+        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
+        model.addAttribute("nombre", profesor.getNombre());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        return "ajustesprofesor";
+    }
+
+    @GetMapping("/clases")
+    public String clases(Model model) {
+        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
+        model.addAttribute("nombre", profesor.getNombre());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        return "clasesprofesor";
+    }
+
+    @GetMapping("/evaluaciones")
+    public String evaluaciones(Model model) {
+        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
+        model.addAttribute("nombre", profesor.getNombre());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        return "evaluacionesprofesor";
+    }
+
+    @GetMapping("/calificaciones")
+    public String calificaciones(Model model) {
+        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
+        model.addAttribute("nombre", profesor.getNombre());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        return "calificacionesprofesor";
+    }
+
+    @GetMapping("/recursos")
+    public String recursos(HttpSession session, Model model) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        Profesor profesor = new Profesor(user.getId().intValue(), user.getNombre(), 4.36f);
+        model.addAttribute("nombre", profesor.getNombre());
+        model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        model.addAttribute("usuarioId", user.getId());
+        return "recursosprofesor";
     }
 
     private Calendario generarCalendario() {
