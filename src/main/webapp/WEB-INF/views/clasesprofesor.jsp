@@ -55,6 +55,22 @@
         </header>
         <div style="background:white;border-radius:30px;padding:40px 50px;max-width:1100px;margin:0 auto;box-shadow:0 4px 24px rgba(0,0,0,0.07);">
             <h2 style="color:#54a7b9;margin-bottom:30px;">Asignación automática de cursos</h2>
+            <c:if test="${not empty cursosDisponibles}">
+                <form action="/profesor/asignar-curso" method="post" style="margin-bottom:30px;">
+                    <label for="curso">Curso disponible:</label>
+                    <select name="cursoId" id="curso" required>
+                        <c:forEach var="curso" items="${cursosDisponibles}">
+                            <option value="${curso.id}">${curso.nombre} (${curso.codigo}) - ${curso.creditos} créditos</option>
+                        </c:forEach>
+                    </select>
+                    <label for="horas" style="margin-left:20px;">Horas a asignar:</label>
+                    <input type="number" name="horasAsignadas" id="horas" min="1" max="40" required style="width:60px;">
+                    <button type="submit" style="margin-left:20px;">Asignar</button>
+                </form>
+            </c:if>
+            <c:if test="${empty cursosDisponibles}">
+                <p>No hay cursos disponibles para asignar.</p>
+            </c:if>
             <h2 style="color:#54a7b9;margin-bottom:30px;">Asignación manual de cursos</h2>
             <h2 style="color:#21465b;margin-top:60px;">Mis cursos</h2>
         </div>

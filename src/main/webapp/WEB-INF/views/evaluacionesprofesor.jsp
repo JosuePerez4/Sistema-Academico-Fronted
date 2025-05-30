@@ -55,22 +55,31 @@
         </header>
         <div style="background:white;border-radius:30px;padding:40px 50px;max-width:1100px;margin:0 auto;box-shadow:0 4px 24px rgba(0,0,0,0.07);">
             <h2 style="color:#54a7b9;margin-bottom:30px;">Crear Evaluación</h2>
-            <form style="display:flex;flex-direction:column;gap:20px;max-width:500px;">
-                <label style="font-size:18px;font-weight:600;">Tipo de evaluación
-                    <select style="margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid #e7e9ed;width:100%;">
-                        <option>Examen</option>
-                        <option>Quiz</option>
-                        <option>Trabajo</option>
-                        <option>Otro</option>
+            <form action="/profesor/evaluaciones/crear" method="post" style="display:flex;flex-direction:column;gap:20px;max-width:500px;">
+                <label style="font-size:18px;font-weight:600;">Curso
+                    <select name="cursoId" required style="margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid #e7e9ed;width:100%;">
+                        <c:forEach var="curso" items="${cursosAsignados}">
+                            <option value="${curso.id}">${curso.nombre} (${curso.codigo})</option>
+                        </c:forEach>
                     </select>
                 </label>
-                <label style="font-size:18px;font-weight:600;">Nombre de la evaluación
-                    <input type="text" style="margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid #e7e9ed;width:100%;" placeholder="Ej: Parcial 1" />
+                <label style="font-size:18px;font-weight:600;">Tipo de evaluación
+                    <select name="tipo" required style="margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid #e7e9ed;width:100%;">
+                        <option value="PARCIAL_1">Parcial 1</option>
+                        <option value="PARCIAL_2">Parcial 2</option>
+                        <option value="TERCERA_NOTA">Tercera Nota</option>
+                        <option value="TAREA">Tarea</option>
+                        <option value="PARCIAL_FINAL">Parcial Final</option>
+                        <option value="QUIZ">Quiz</option>
+                    </select>
                 </label>
-                <label style="font-size:18px;font-weight:600;">Fecha
-                    <input type="date" style="margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid #e7e9ed;width:100%;" />
+                <label style="font-size:18px;font-weight:600;">Descripción
+                    <input name="descripcion" type="text" required style="margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid #e7e9ed;width:100%;" placeholder="Ej: Parcial 1" />
                 </label>
-                <button type="button" style="margin-top:20px;padding:12px 0;background:#54a7b9;color:white;font-size:18px;font-weight:700;border:none;border-radius:8px;">Crear</button>
+                <label style="font-size:18px;font-weight:600;">Fecha límite
+                    <input name="fechaLimite" type="date" required style="margin-top:8px;padding:8px 12px;border-radius:8px;border:1px solid #e7e9ed;width:100%;" />
+                </label>
+                <button type="submit" style="margin-top:20px;padding:12px 0;background:#54a7b9;color:white;font-size:18px;font-weight:700;border:none;border-radius:8px;">Crear</button>
             </form>
         </div>
     </main>
