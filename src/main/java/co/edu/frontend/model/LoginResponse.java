@@ -6,6 +6,19 @@ public class LoginResponse {
     private String correo;
     private String rol;
 
+    // Constructor vacío
+    public LoginResponse() {
+    }
+
+    // Constructor con parámetros
+    public LoginResponse(Long id, String nombre, String correo, String rol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.rol = rol;
+    }
+
+    // Getters y Setters
     public Long getId() {
         return id;
     }
