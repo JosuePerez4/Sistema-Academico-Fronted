@@ -2,14 +2,31 @@ package co.edu.frontend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.frontend.model.LoginResponse;
 import jakarta.servlet.http.HttpSession;
+import co.edu.frontend.model.CursoResponseDTO;
+import co.edu.frontend.model.DocenteResponseDTO;
+import co.edu.frontend.model.DocenteUpdateDTO;
+import co.edu.frontend.model.RecursoResponseDTO;
+import co.edu.frontend.model.EvaluacionCreateDTO;
 
 @Controller
 @RequestMapping("/profesor")
@@ -62,27 +79,86 @@ public class ProfesorController {
     }
 
     @GetMapping("/ajustes")
-    public String ajustes(Model model) {
-        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
-        model.addAttribute("nombre", profesor.getNombre());
+    public String ajustes(Model model, HttpSession session) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/docentes/ObtenerDocente/" + user.getId();
+        try {
+            DocenteResponseDTO docente = restTemplate.getForObject(url, DocenteResponseDTO.class);
+            model.addAttribute("docente", docente);
+        } catch (Exception e) {
+            model.addAttribute("sinDatosDocente", true);
+        }
         model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
         return "ajustesprofesor";
     }
 
+    @PostMapping("/ajustes/editar")
+    public String editarAjustes(@ModelAttribute DocenteUpdateDTO docenteUpdateDTO, HttpSession session, Model model) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/docentes/ActualizarDatosProfesionales/" + user.getId();
+        restTemplate.put(url, docenteUpdateDTO);
+        return "redirect:/profesor/ajustes";
+    }
+
     @GetMapping("/clases")
-    public String clases(Model model) {
-        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
-        model.addAttribute("nombre", profesor.getNombre());
+    public String clases(Model model, HttpSession session) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/api/cursos/listar/todos";
+        ResponseEntity<CursoResponseDTO[]> response = restTemplate.exchange(
+            url,
+            HttpMethod.GET,
+            new HttpEntity<>(new HttpHeaders()),
+            CursoResponseDTO[].class
+        );
+        CursoResponseDTO[] cursos = response.getBody();
+        // Filtrar cursos no asignados (simulando que docenteId == null o 0)
+        // Si el backend no trae docenteId, aquí solo mostramos todos
+        // Si sí lo trae, habría que ajustar el DTO y el filtro
+        model.addAttribute("cursosDisponibles", Arrays.asList(cursos));
+        model.addAttribute("nombre", user.getNombre());
         model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
         return "clasesprofesor";
     }
 
     @GetMapping("/evaluaciones")
-    public String evaluaciones(Model model) {
-        Profesor profesor = new Profesor(123, "Juan Pérez", 4.36f); // Simula obtener el profesor real
-        model.addAttribute("nombre", profesor.getNombre());
+    public String evaluaciones(Model model, HttpSession session) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        // Obtener cursos asignados al profesor usando el nuevo endpoint
+        String url = "http://localhost:8081/api/cursos/docente/" + user.getId();
+        CursoResponseDTO[] cursos = restTemplate.getForObject(url, CursoResponseDTO[].class);
+        model.addAttribute("cursosAsignados", cursos);
+        model.addAttribute("nombre", user.getNombre());
         model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
+        model.addAttribute("evaluacionCreateDTO", new EvaluacionCreateDTO());
         return "evaluacionesprofesor";
+    }
+
+    @PostMapping("/evaluaciones/crear")
+    public String crearEvaluacion(@ModelAttribute EvaluacionCreateDTO evaluacionCreateDTO, HttpSession session, Model model) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/api/evaluaciones/crear";
+        restTemplate.postForObject(url, evaluacionCreateDTO, String.class);
+        return "redirect:/profesor/evaluaciones";
     }
 
     @GetMapping("/calificaciones")
@@ -99,11 +175,38 @@ public class ProfesorController {
         if (user == null) {
             return "redirect:/login";
         }
-        Profesor profesor = new Profesor(user.getId().intValue(), user.getNombre(), 4.36f);
-        model.addAttribute("nombre", profesor.getNombre());
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/api/recursos";
+        RecursoResponseDTO[] recursos = restTemplate.getForObject(url, RecursoResponseDTO[].class);
+        model.addAttribute("recursosDisponibles", recursos);
+        model.addAttribute("nombre", user.getNombre());
         model.addAttribute("fechaActual", java.time.LocalDate.now().toString());
         model.addAttribute("usuarioId", user.getId());
         return "recursosprofesor";
+    }
+
+    @PostMapping("/asignar-curso")
+    public String asignarCurso(@RequestParam("cursoId") Long cursoId,
+                               @RequestParam("horasAsignadas") int horasAsignadas,
+                               HttpSession session,
+                               Model model) {
+        LoginResponse user = (LoginResponse) session.getAttribute("usuario");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8081/api/asignacion";
+        // Crear el DTO para la asignación
+        java.util.Map<String, Object> asignacion = new java.util.HashMap<>();
+        asignacion.put("docenteId", user.getId());
+        asignacion.put("cursoId", cursoId);
+        asignacion.put("horasAsignadas", horasAsignadas);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<java.util.Map<String, Object>> request = new HttpEntity<>(asignacion, headers);
+        restTemplate.postForObject(url, request, String.class);
+        // Redirigir de nuevo a la página de clases
+        return "redirect:/profesor/clases";
     }
 
     private Calendario generarCalendario() {
