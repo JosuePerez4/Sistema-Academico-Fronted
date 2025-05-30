@@ -1,13 +1,17 @@
 /* Estilos Base con Colores Verde Azulados */
 :root {
-    --primary-color: #21465b; /* Un tono oscuro de azul verdoso para la barra lateral */
-    --secondary-color: #54a7b9; /* Un tono medio de azul verdoso para elementos activos/destacados */
+    --primary-color: #21465b; /* Un tono oscuro de azul verdoso para la barra lateral y títulos */
+    --secondary-color: #54a7b9; /* Un tono medio de azul verdoso para elementos activos/destacados y enlaces */
     --accent-color: #d9534f; /* Un rojo para alertas/insignias (se mantiene similar) */
     --light-gray: #e7e9ed; /* Un gris claro para fondos de input/separadores */
     --dark-gray: #6c757d; /* Un gris oscuro para texto secundario */
     --text-color: #343a40; /* Un negro suave para el texto principal */
     --white: #fff;
     --body-bg: #f8f9fa; /* Un fondo muy claro para el cuerpo */
+    --header-height: 80px; /* Altura fija del encabezado */
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra ligera para tarjetas */
+    --shadow-medium: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra media para sidebar */
+    --font-family: 'Inter', sans-serif;
 }
 
 * {
@@ -17,14 +21,16 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-family);
     color: var(--text-color);
     background-color: var(--body-bg);
+    display: flex;
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
-    min-height: 100vh;
+    width: 100%;
 }
 
 /* Sidebar */
@@ -35,6 +41,11 @@ body {
     padding: 20px 0;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-medium);
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .logo {
@@ -68,19 +79,43 @@ nav li {
     transition: background-color 0.3s;
 }
 
+/* **Sidebar: Texto blanco fijo** */
+nav li span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--white); /* Asegura el color blanco por defecto para el texto */
+}
+
 nav li:hover {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav li:hover span {
+    color: var(--white); /* Sobreescribe cualquier cambio de color al pasar el mouse */
 }
 
 nav li.active {
     background-color: var(--secondary-color);
 }
 
-nav li span {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+nav li.active span {
+    color: var(--white); /* Sobreescribe cualquier cambio de color cuando está activo */
 }
+
+nav li a { /* Si hay un <a>, asegúrate que no cambie el color */
+    color: var(--white);
+    text-decoration: none;
+}
+
+nav li a:visited {
+    color: var(--white);
+}
+
+nav li a:active {
+    color: var(--white);
+}
+/* **Fin Sidebar** */
 
 .badge {
     background-color: var(--accent-color);
@@ -115,7 +150,8 @@ nav li span {
 /* Main Content */
 .main-content {
     flex: 1;
-    padding: 30px;
+    margin-left: 250px; /* Deja espacio para el sidebar fijo */
+    padding: 30px; /* Padding para el contenido principal, como en la imagen del dashboard */
     overflow-y: auto;
 }
 
@@ -124,11 +160,14 @@ nav li span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 30px; /* Espacio debajo del encabezado */
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .header h2 {
     font-size: 24px;
+    margin: 0; /* Asegura que no tenga margen adicional */
 }
 
 .highlight {
@@ -152,11 +191,11 @@ nav li span {
     border: 1px solid var(--light-gray);
     border-radius: 8px;
     width: 200px;
-    color: var(--text-color); /* Color del texto dentro del input */
+    color: var(--text-color);
 }
 
 .search::placeholder {
-    color: var(--dark-gray); /* Color del placeholder */
+    color: var(--dark-gray);
 }
 
 .notification {
@@ -193,24 +232,32 @@ nav li span {
 }
 
 /* ---------------------------------------------------- */
-/* Estilos para la distribución de los 3 bloques principales */
+/* Estilos para la distribución de los 3 bloques principales del Dashboard */
 /* ---------------------------------------------------- */
 .dashboard-summary {
     display: flex;
-    gap: 30px;
-    margin-bottom: 30px;
+    gap: 30px; /* Espacio entre los bloques */
+    margin-bottom: 30px; /* Espacio debajo de este grupo de bloques */
 }
 
-/* Estilos comunes para los bloques principales */
+/* Estilos comunes para los bloques principales (tarjetas) */
 .next-class-section,
 .teacher-rating-section,
-.workload-section {
-    flex: 1;
+.workload-section,
+.calendar-container, /* También aplica a calendario */
+.semester-progress /* Y al progreso del semestre */ {
     background-color: var(--white);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    margin-bottom: 0;
+    box-shadow: var(--shadow-light); /* Sombra ligera, como en la imagen */
+    margin-bottom: 0; /* No debe tener margen inferior si están dentro de dashboard-summary o son el último elemento en su grupo */
+}
+
+/* Flex para los 3 bloques */
+.next-class-section,
+.teacher-rating-section,
+.workload-section {
+    flex: 1; /* Permite que los 3 bloques compartan el espacio por igual */
 }
 
 /* Estilos para el contenido interno de cada bloque */
@@ -218,8 +265,8 @@ nav li span {
 .teacher-rating-section h3,
 .workload-section h3 {
     font-size: 20px;
-    margin-bottom: 15px; /* Aumenté un poco el margen inferior del título */
-    color: var(--text-color); /* Color del título */
+    margin-bottom: 15px;
+    color: var(--text-color);
 }
 
 /* Estilos para la información de la Próxima Clase */
@@ -282,11 +329,8 @@ nav li span {
 
 /* Calendario */
 .calendar-container {
-    background-color: var(--white);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px; /* Margen inferior para separarlo del siguiente elemento */
+    /* background-color, border-radius, padding, box-shadow ya están en la regla común */
 }
 
 .calendar {
@@ -312,11 +356,11 @@ nav li span {
 .calendar .current-day {
     background-color: #e3f2fd;
     font-weight: bold;
-    color: var(--text-color); /* Asegurando que el texto del día actual sea legible */
+    color: var(--text-color);
 }
 
 .calendar .weekend {
-    color: var(--accent-color); /* Mantiene el rojo para los fines de semana */
+    color: var(--accent-color);
 }
 
 .class-indicator {
@@ -332,11 +376,9 @@ nav li span {
 
 /* Semester Progress */
 .semester-progress {
-    margin-top: 20px;
-    background-color: var(--white);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    /* background-color, border-radius, padding, box-shadow ya están en la regla común */
+    margin-top: 20px; /* Mantener este margen si es el único elemento después del calendario */
+    margin-bottom: 30px; /* Para asegurar que no quede pegado al final si es el último contenido */
 }
 
 .semester-progress h4 {
@@ -364,4 +406,543 @@ nav li span {
     color: var(--dark-gray);
     display: block;
     text-align: right;
+}
+
+
+/* ---------------------------------------------------- */
+/* Estilos para Mensajería Interna (se mantienen) */
+/* ---------------------------------------------------- */
+
+.internal-messages-content {
+    background-color: var(--white);
+    border-radius: 12px; /* Asegura el mismo radio de borde que las demás tarjetas */
+    box-shadow: var(--shadow-light); /* Misma sombra */
+    padding: 25px;
+    margin: 30px 0; /* Ajustado para que el margen sea consistente */
+    /* Si se usa content-box general, entonces la margin-bottom se puede ajustar ahí */
+}
+
+.internal-messages-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.conversation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.conversation-item {
+    display: block;
+    background-color: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 15px 20px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    color: var(--text-color);
+}
+
+.conversation-item .conversation-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.conversation-item .conversation-preview {
+    font-size: 0.95em;
+    color: var(--dark-gray);
+    margin: 5px 0 0;
+    line-height: 1.4;
+    max-height: 2.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.conversation-item .conversation-date {
+    font-size: 0.85em;
+    color: var(--dark-gray);
+    float: right;
+    margin-top: -20px;
+}
+
+.conversation-item:hover {
+    background-color: #f0f2f4;
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.conversation-item:hover .conversation-title {
+    color: var(--primary-color);
+}
+
+.conversation-item:hover .conversation-preview {
+    color: var(--dark-gray);
+}
+
+.conversation-item:hover .conversation-date {
+    color: var(--dark-gray);
+}
+
+.conversation-item:active .conversation-title,
+.conversation-item:active .conversation-preview,
+.conversation-item:active .conversation-date,
+.conversation-item:visited .conversation-title,
+.conversation-item:visited .conversation-preview,
+.conversation-item:visited .conversation-date {
+    color: inherit;
+}
+
+.conversation-item.unread {
+    background-color: #e3f2fd;
+    border-left: 5px solid var(--secondary-color);
+}
+
+.conversation-item.unread .conversation-title,
+.conversation-item.unread .conversation-preview,
+.conversation-item.unread .conversation-date {
+    color: var(--text-color);
+}
+
+.new-message-btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.new-message-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.new-message-btn:active {
+    background-color: #1a3544;
+    color: var(--white);
+    border-color: #1a3544;
+}
+
+/* Botones generales (si los necesitas para otras partes) */
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background-color: #408da0;
+    transform: translateY(-2px);
+}
+
+
+/* Styles for verConversacion.css */
+.conversation-detail-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    padding: 25px;
+    margin: 30px 0; /* Consistente con otros bloques */
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-header-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.conversation-header-detail h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    flex-grow: 1;
+}
+
+.actions-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-back, .btn-reply-redirect {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-back:hover, .btn-reply-redirect:hover {
+    background-color: #408da0;
+    transform: translateY(-2px);
+}
+
+.messages-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+
+.message-item {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.message-item.sent {
+    justify-content: flex-end;
+}
+
+.message-item.received {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 70%;
+    padding: 12px 18px;
+    border-radius: 20px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.message-item.sent .message-bubble {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-bottom-right-radius: 2px;
+}
+
+.message-item.received .message-bubble {
+    background-color: var(--light-gray); /* Usar light-gray para el fondo */
+    color: var(--text-color);
+    border: 1px solid var(--light-gray); /* Borde sutil */
+    border-bottom-left-radius: 2px;
+}
+
+.message-bubble p {
+    margin: 0;
+    padding: 0;
+}
+
+.message-bubble .message-meta {
+    display: block;
+    font-size: 0.75em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+    text-align: right;
+}
+.message-item.received .message-bubble .message-meta {
+    color: var(--dark-gray);
+}
+
+
+/* Styles for nuevoMensaje.css (combined here for completeness) */
+.compose-message-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    padding: 25px;
+    margin: 30px auto; /* Centra el bloque horizontalmente y da margen vertical */
+    max-width: 800px; /* Ancho deseado */
+    width: 90%; /* Ocupa el 90% del ancho disponible hasta el max-width */
+}
+
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Espacio entre grupos de formulario */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%; /* Ocupa todo el ancho disponible de su contenedor */
+    padding: 10px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1em;
+    box-sizing: border-box;
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(84, 167, 185, 0.25);
+    outline: none;
+}
+
+.compose-message-container .form-group textarea { /* Especificidad para el resize */
+    resize: none !important; /* Desactiva la redimensión */
+    min-height: 100px;
+    height: 150px; /* Altura fija para el textarea, ajusta si lo necesitas más grande */
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Styles for alertasAnuncios.css (combined here for completeness) */
+.announcements-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    padding: 25px;
+    margin: 30px 0; /* Consistente con otros bloques */
+}
+
+.announcements-container h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.announcement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.announcement-item {
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 15px 20px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.announcement-item:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.announcement-item.new {
+    border-left: 5px solid var(--accent-color);
+    background-color: #fffbe6;
+}
+
+.announcement-item h4 {
+    margin: 0 0 5px 0;
+    color: var(--primary-color);
+    font-size: 1.2em;
+}
+
+.announcement-item p {
+    font-size: 0.95em;
+    color: var(--dark-gray);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.announcement-meta {
+    font-size: 0.85em;
+    color: var(--dark-gray);
+    text-align: right;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 200px;
+    }
+    .main-content {
+        margin-left: 200px;
+        padding: 20px; /* Reducir padding en pantallas medianas */
+    }
+    .header h2 {
+        font-size: 1.5em;
+    }
+    .header-actions {
+        gap: 10px;
+    }
+    .header-actions .search {
+        width: 150px;
+    }
+    .dashboard-summary {
+        gap: 20px; /* Menos espacio entre bloques en tabletas */
+    }
+    .compose-message-container {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding-bottom: 0;
+        box-shadow: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 0;
+    }
+    .sidebar nav ul li {
+        margin: 5px;
+    }
+    .sidebar nav ul li span {
+        color: var(--white);
+    }
+    .sidebar .logo,
+    .sidebar .sidebar-footer {
+        display: none;
+    }
+    .main-content {
+        margin-left: 0;
+        padding-top: 20px;
+    }
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+    .header-actions {
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+    .header-actions .search {
+        width: 100%;
+        order: 1;
+    }
+    .header-actions .notification,
+    .header-actions .profile {
+        order: 2;
+    }
+    /* Asegurar que los bloques principales del dashboard se apilen en móviles */
+    .dashboard-summary {
+        flex-direction: column;
+        gap: 20px; /* Espacio entre los bloques apilados */
+    }
+    .next-class-section,
+    .teacher-rating-section,
+    .workload-section,
+    .calendar-container,
+    .semester-progress,
+    .internal-messages-content,
+    .conversation-detail-container,
+    .compose-message-container,
+    .announcements-container {
+        margin: 15px; /* Reducir márgenes en móviles */
+        padding: 15px;
+        width: auto; /* Permite que tome el ancho completo disponible */
+        max-width: none; /* Elimina la restricción de ancho máximo */
+    }
+    .message-quick-access {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .message-card {
+        width: 90%;
+        max-width: none;
+    }
+    .conversation-header-detail {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .actions-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+    .btn-back, .btn-reply-redirect {
+        width: 100%;
+        margin-left: 0;
+    }
+    .message-item .message-bubble {
+        max-width: 90%;
+    }
+    .compose-message-container {
+        max-width: 95%; /* Ocupa casi todo el ancho en móviles */
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .header-actions .notification,
+    .header-actions .profile {
+        width: 100%;
+        justify-content: center;
+    }
+    .form-group input[type="text"],
+    .form-group textarea {
+        width: 100%;
+    }
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-actions .btn {
+        width: 90%;
+    }
 }

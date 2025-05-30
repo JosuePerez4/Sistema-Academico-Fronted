@@ -1,15 +1,32 @@
 package co.edu.frontend.model;
 
 public class LoginResponse {
+    private Long id;
     private String nombre;
     private String correo;
     private String rol;
 
-    // Constructor
+    // Constructor vacío
     public LoginResponse() {
     }
 
+    // Constructor con parámetros
+    public LoginResponse(Long id, String nombre, String correo, String rol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.rol = rol;
+    }
+
     // Getters y Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getCorreo() {
         return correo;
     }

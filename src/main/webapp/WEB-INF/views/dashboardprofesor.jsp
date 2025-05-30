@@ -4,13 +4,14 @@
         <html lang="es">
 
         <head>
-            <meta charset="UTF-8">
+            <meta charset="UTF-8" />
             <title>Dashboard Profesor - Sistema Académico</title>
-            <link rel="stylesheet" href="/css/profesor.css">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+            <link rel="stylesheet" href="/css/profesor.css" />
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+                rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
         </head>
 
         <body>
@@ -23,33 +24,41 @@
                     <nav>
                         <ul>
                             <li class="active"><span>Inicio</span></li>
-                            <li><span>Mis Clases</span></li>
-                            <li><span>Calificaciones</span></li>
-                            <li><span>Mensajes <span class="badge">3</span></span></li>
+                            <li><a href="/profesor/clases">Mis Clases</a></li>
+                            <li><a href="/profesor/calificaciones">Calificaciones</a></li>
+                            <li><a href="/mensajes"><span>Mensajes
+                                    <span class="badge">${notificacionesPendientes}</span></span></a>
+                            </li>
                             <li><span>Horario</span></li>
                             <li><span>Asistencias</span></li>
-                            <li><span>Reportes</span></li>
-                            <li><span>Ajustes</span></li>
+                            <li><a href="/profesor/evaluaciones">Evaluaciones</a></li>
+                            <li><a href="/profesor/ajustes">Ajustes</a></li>
+                            <li><a href="/profesor/recursos">Recursos Académicos</a></li>
                         </ul>
                     </nav>
                     <div class="sidebar-footer">
-                        <a href="#">Ayuda</a>
-                        <a href="#">Contáctenos</a>
-                        <a href="#">Cerrar sesión</a>
+                        <a href="/ayuda">Ayuda</a>
+                        <a href="/profesor/contacto">Contáctenos</a>
+                        <a href="/logout">Cerrar sesión</a>
                     </div>
                 </aside>
 
                 <main class="main-content">
                     <header class="header">
                         <div>
-                            <h2>Bienvenido de vuelta, <span class="highlight">Maestro #${profesor.id}</span></h2>
+                            <h2>
+                                Bienvenido de vuelta,
+                                <span class="highlight">Maestro #${profesor.id}</span>
+                            </h2>
                             <div class="date">${fechaActual}</div>
                         </div>
                         <div class="header-actions">
-                            <input type="text" placeholder="Búsqueda" class="search">
+                            <input type="text" placeholder="Búsqueda" class="search" />
                             <div class="notification">
-                                <span class="notif-badge">${notificacionesPendientes}</span>
-                                <i class="fas fa-bell"></i>
+                                <a href="/mensajes" class="notification-link">
+                                    <span class="notif-badge">${notificacionesPendientes}</span>
+                                    <i class="fas fa-bell"></i>
+                                </a>
                             </div>
                             <div class="profile">
                                 <img src="/image/Perfil.png" alt="Perfil" />
@@ -121,7 +130,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </main>
             </div>
         </body>

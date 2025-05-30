@@ -1,0 +1,137 @@
+/* Estilos específicos para la página de Mensajes */
+
+.messages-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan en pantallas pequeñas */
+    gap: 30px; /* Espacio entre las tarjetas */
+    justify-content: center; /* Centra las tarjetas si hay pocas */
+    padding: 20px; /* Añade un poco de padding al contenedor */
+}
+
+.message-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada para destacar */
+    padding: 25px;
+    width: 100%;
+    max-width: 450px; /* Ancho máximo para la tarjeta */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el botón hacia abajo si el contenido varía */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+.message-card:hover {
+    transform: translateY(-5px); /* Pequeño efecto de elevación al pasar el mouse */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    font-size: 48px; /* Tamaño del icono */
+    color: var(--secondary-color); /* Color del icono */
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    min-height: 70px; /* Asegura un mínimo de altura para el texto */
+    display: flex; /* Para centrar verticalmente el texto si es corto */
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none; /* Elimina bordes por defecto de los botones */
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #4292a4; /* Un tono un poco más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    border: 1px solid var(--dark-gray);
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-gray);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Ajustes para responsividad */
+@media (max-width: 768px) {
+    .messages-container {
+        flex-direction: column; /* Apila las tarjetas en pantallas pequeñas */
+        align-items: center; /* Centra las tarjetas apiladas */
+        gap: 20px;
+    }
+
+    .message-card {
+        padding: 20px;
+        max-width: 90%; /* Ocupa más ancho en pantallas pequeñas */
+    }
+
+    .card-icon {
+        font-size: 40px;
+    }
+
+    .card-header h3 {
+        font-size: 20px;
+    }
+
+    .card-content p {
+        font-size: 15px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Asegurarse que el enlace de notificación se vea bien */
+.notification .notification-link {
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: inherit; /* Hereda el color del padre para no cambiarlo */
+    text-decoration: none; /* Quita el subrayado */
+}
+
+.notification .notification-link i {
+    font-size: 20px; /* Asegura que el icono de campana tenga un buen tamaño */
+    color: var(--text-color); /* Color del icono */
+}
+
+.notification .notification-link:hover i {
+    color: var(--secondary-color); /* Cambia de color al pasar el mouse */
+}
